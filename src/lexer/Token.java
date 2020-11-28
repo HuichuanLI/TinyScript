@@ -34,6 +34,6 @@ public class Token {
     public String toString() {
         return String.format("type %s, value %s", _type, _value);
     }
-    
+
 
 }
