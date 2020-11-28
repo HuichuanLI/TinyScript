@@ -18,7 +18,6 @@ public class PeekIterator<T> implements Iterator<T> {
     private final static int CACHE_SIZE = 10;
     private T _endToken = null;
 
-    
 
     public PeekIterator(Stream<T> stream) {
         it = stream.iterator();
@@ -36,7 +35,7 @@ public class PeekIterator<T> implements Iterator<T> {
             return this.stackPutBacks.getFirst();
         }
         if (!it.hasNext()) {
-            return null;
+            return _endToken;
         }
         T val = next();
         this.putBack();
@@ -55,7 +54,7 @@ public class PeekIterator<T> implements Iterator<T> {
 
     @Override
     public boolean hasNext() {
-        return this.stackPutBacks.size() > 0 || it.hasNext();
+        return this._endToken != null || this.stackPutBacks.size() > 0 || it.hasNext();
     }
 
     @Override
@@ -64,6 +63,11 @@ public class PeekIterator<T> implements Iterator<T> {
         if (this.stackPutBacks.size() > 0) {
             val = this.stackPutBacks.pop();
         } else {
+            if (!this.it.hasNext()) {
+                T temp = _endToken;
+                _endToken = null;
+                return temp;
+            }
             val = it.next();
         }
         while (queueCache.size() > CACHE_SIZE - 1) {
