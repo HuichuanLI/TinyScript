@@ -55,3 +55,5 @@ class PeekIterator {
     }
 
 }
+
+module.exports = PeekIterator
