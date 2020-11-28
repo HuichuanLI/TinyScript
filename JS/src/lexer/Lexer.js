@@ -1,0 +1,5 @@
+class Lexer {
+    analyse(source) {
+    
+    }
+}
