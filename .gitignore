@@ -10,3 +10,5 @@ Java/.DS_Store
 JS/src/node_modules/.bin/
 
 JS/src/node_modules/
+
+JS/node_modules/
