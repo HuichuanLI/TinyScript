@@ -28,5 +28,14 @@ class PeekIteratorTest {
 
     @Test
     void putBack() {
+        String source = "abcdefg";
+        PeekIterator<Character> it = new PeekIterator<Character>(source.chars().mapToObj(c -> (char) c));
+
+
+        assertEquals('a', it.next());
+        assertEquals('b', it.next());
+        it.putBack();
+        it.putBack();
+        assertEquals('a', it.next());
     }
 }
