@@ -6,3 +6,7 @@
 Java/.DS_Store
 
 .DS_Store
+
+JS/src/node_modules/.bin/
+
+JS/src/node_modules/

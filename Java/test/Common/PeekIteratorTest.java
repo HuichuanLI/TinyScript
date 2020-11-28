@@ -38,4 +38,19 @@ class PeekIteratorTest {
         it.putBack();
         assertEquals('a', it.next());
     }
+
+    @Test
+    void endToken() {
+        String source = "abcdefg";
+        PeekIterator<Character> it = new PeekIterator<Character>(source.chars().mapToObj(c -> (char) c), (char) 0);
+
+        int i = 0;
+        while (it.hasNext()) {
+            if (i == 7) {
+                assertEquals((char) 0, it.next());
+            } else {
+                assertEquals(source.charAt(i++), it.next());
+            }
+        }
+    }
 }
