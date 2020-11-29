@@ -70,4 +70,13 @@ class LexerTest {
         assertToken(tokens.get(20), ")", TokenType.BRACKET);
 
     }
+
+    @Test
+    public void test_deleteComment() throws LexicalException {
+        String source = "/*123123123\n123123123*/a=1";
+        Lexer lexer = new Lexer();
+        ArrayList<Token> tokens = lexer.analyse(source.chars().mapToObj(x -> (char) x));
+        assertEquals(3, tokens.size());
+    }
+
 }

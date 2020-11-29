@@ -30,10 +30,14 @@ public class Lexer {
                 tokens.add(new Token(TokenType.BRACKET, c + ""));
                 continue;
             }
+            // 删除注释
+
             if (c == '/') {
                 if (lookahead == '/') {
                     while (it.hasNext() && (c = it.next()) != '\n') ;
+                    continue;
                 } else if (lookahead == '*') {
+                    it.next();
                     boolean valid = false;
 
                     while (it.hasNext()) {
@@ -47,6 +51,7 @@ public class Lexer {
                     if (!valid) {
                         throw new LexicalException("comments not match");
                     }
+                    continue;
                 }
             }
 
