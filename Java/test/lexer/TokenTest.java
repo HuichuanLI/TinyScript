@@ -3,6 +3,8 @@ package lexer;
 import Common.PeekIterator;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -70,6 +72,26 @@ class TokenTest {
             PeekIterator it = new PeekIterator<Character>(test.chars().mapToObj(x -> (char) x));
             Token token = Token.makeOp(it);
             assertToken(token, results[i++], TokenType.OPERATOR);
+        }
+    }
+
+    @Test
+    public void test_makeNumber() throws LexicalException {
+        String[] tests = {
+                "+0 aa",
+                "-0 aa",
+                ".3 ccc",
+                ".5555 ddd",
+                "7789.8888 ooo",
+                "-1000.123123*123123",
+        };
+
+        for (String test : tests) {
+            PeekIterator it = new PeekIterator<Character>(test.chars().mapToObj(x -> (char) x));
+            Token token = Token.makeNumber(it);
+            String[] splitValue = test.split("[* ]+");
+            assertToken(token, splitValue[0],
+                    (test.indexOf('.') != -1) ? TokenType.FLOAT : TokenType.INTEGER);
         }
     }
 }

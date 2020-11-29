@@ -253,6 +253,82 @@ public class Token {
 
     }
 
+    public static Token makeNumber(PeekIterator<Character> it) throws LexicalException {
+
+        String s = "";
+
+        // 具体state的定义请查看状态机
+        int state = 0;
+
+        while (it.hasNext()) {
+            char lookahead = it.peek();
+
+            switch (state) {
+                case 0:
+                    if (lookahead == '0') {
+                        state = 1;
+                    } else if (AlphabetHelper.isNumber(lookahead)) {
+                        state = 2;
+                    } else if (lookahead == '+' || lookahead == '-') {
+                        state = 3;
+                    } else if (lookahead == '.') {
+                        state = 5;
+                    }
+                    break;
+                case 1:
+                    if (lookahead == '0') {
+                        state = 1;
+                    } else if (AlphabetHelper.isNumber(lookahead)) {
+                        state = 2;
+                    } else if (lookahead == '.') {
+                        state = 4;
+                    } else {
+                        return new Token(TokenType.INTEGER, s);
+                    }
+                    break;
+                case 2:
+                    if (AlphabetHelper.isNumber(lookahead)) {
+                        state = 2;
+                    } else if (lookahead == '.') {
+                        state = 4;
+                    } else {
+                        return new Token(TokenType.INTEGER, s);
+                    }
+                    break;
+                case 3:
+                    if (AlphabetHelper.isNumber(lookahead)) {
+                        state = 2;
+                    } else if (lookahead == '.') {
+                        state = 5;
+                    } else {
+                        throw new LexicalException(lookahead);
+                    }
+                    break;
+                case 4:
+                    if (lookahead == '.') {
+                        throw new LexicalException(lookahead);
+                    } else if (AlphabetHelper.isNumber(lookahead)) {
+                        state = 4;
+                    } else {
+                        return new Token(TokenType.FLOAT, s);
+                    }
+                    break;
+                case 5:
+                    if (AlphabetHelper.isNumber(lookahead)) {
+                        state = 4;
+                    } else {
+                        throw new LexicalException(lookahead);
+                    }
+                    break;
+
+            }
+
+            it.next();
+            s += lookahead;
+        }
+        throw new LexicalException("Unexpected error");
+    }
+
     @Override
     public String toString() {
         return String.format("type %s, value %s", _type, _value);
