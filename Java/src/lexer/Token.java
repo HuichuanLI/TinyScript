@@ -329,6 +329,19 @@ public class Token {
         throw new LexicalException("Unexpected error");
     }
 
+    public boolean isNumber() {
+        return this._type == TokenType.INTEGER || this._type == TokenType.FLOAT;
+    }
+
+    public boolean isOperator() {
+        return this._type == TokenType.OPERATOR;
+    }
+
+    public boolean isValue() {
+        return isVariable() || isScalar();
+    }
+
+
     @Override
     public String toString() {
         return String.format("type %s, value %s", _type, _value);
