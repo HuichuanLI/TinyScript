@@ -1,3 +1,23 @@
+const TokenType = require("./TokenType");
+const AlphabetHelper = require("./AlphabetHelper");
+const LexicalException = require("./LexicalException");
+
+const Keywords = new Set([
+  "var",
+  "if",
+  "else",
+  "for",
+  "while",
+  "break",
+  "func",
+  "return",
+  "int",
+  "float",
+  "bool",
+  "void",
+  "string"
+]);
+
 class Token {
     constructor(type, value) {
       this._type = type;
