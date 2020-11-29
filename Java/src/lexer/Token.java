@@ -8,29 +8,29 @@ import Common.PeekIterator;
  * Time   : 2020/11/28
  */
 public class Token {
-    TokenType _type;
-    String _value;
+    private TokenType type;
+    private String value;
 
     public Token(TokenType type, String value) {
-        this._type = type;
-        this._value = value;
+        this.type = type;
+        this.value = value;
     }
 
     public TokenType getType() {
-        return _type;
+        return type;
     }
 
     public String getValue() {
-        return _value;
+        return value;
     }
 
     public boolean isVariable() {
-        return _type == TokenType.VARIABLE;
+        return type == TokenType.VARIABLE;
     }
 
     public boolean isScalar() {
-        return _type == TokenType.INTEGER || _type == TokenType.FLOAT ||
-                _type == TokenType.STRING || _type == TokenType.BOOLEAN;
+        return type == TokenType.INTEGER || type == TokenType.FLOAT ||
+                type == TokenType.STRING || type == TokenType.BOOLEAN;
     }
 
     /**
@@ -330,11 +330,11 @@ public class Token {
     }
 
     public boolean isNumber() {
-        return this._type == TokenType.INTEGER || this._type == TokenType.FLOAT;
+        return this.type == TokenType.INTEGER || this.type == TokenType.FLOAT;
     }
 
     public boolean isOperator() {
-        return this._type == TokenType.OPERATOR;
+        return this.type == TokenType.OPERATOR;
     }
 
     public boolean isValue() {
@@ -344,7 +344,7 @@ public class Token {
 
     @Override
     public String toString() {
-        return String.format("type %s, value %s", _type, _value);
+        return String.format("type %s, value %s", type, value);
     }
 
 

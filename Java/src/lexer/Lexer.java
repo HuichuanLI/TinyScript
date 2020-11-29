@@ -30,6 +30,25 @@ public class Lexer {
                 tokens.add(new Token(TokenType.BRACKET, c + ""));
                 continue;
             }
+            if (c == '/') {
+                if (lookahead == '/') {
+                    while (it.hasNext() && (c = it.next()) != '\n') ;
+                } else if (lookahead == '*') {
+                    boolean valid = false;
+
+                    while (it.hasNext()) {
+                        char p = it.next();
+                        if (p == '*' && it.peek() == '/') {
+                            it.next();
+                            valid = true;
+                            break;
+                        }
+                    }
+                    if (!valid) {
+                        throw new LexicalException("comments not match");
+                    }
+                }
+            }
 
             if (c == '"' || c == '\'') {
                 it.putBack();
@@ -39,7 +58,6 @@ public class Lexer {
 
             if (AlphabetHelper.isLetter(c)) {
                 it.putBack();
-                ;
                 tokens.add(Token.makeVarOrKeyword(it));
                 continue;
             }
