@@ -33,4 +33,18 @@ class TokenTest {
 
     }
 
+    @Test
+    public void test_makeString() throws LexicalException {
+        String[] tests = {
+                "\"123\"",
+                "\'123\'"
+        };
+
+        for (String test : tests) {
+            PeekIterator it = new PeekIterator<Character>(test.chars().mapToObj(x -> (char) x));
+            Token token = Token.makeString(it);
+            assertToken(token, test, TokenType.STRING);
+        }
+
+    }
 }
