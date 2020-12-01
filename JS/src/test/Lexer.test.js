@@ -63,4 +63,19 @@ describe("Lexer", () => {
         assertToken(tokens[20], ")", TokenType.BRACKET);
 
     })
+
+    it("delete comment", () =>{
+        const lexer = new Lexer()
+        const source = "/*123123123\n123123123*/a=1"
+        const tokens = lexer.analyse(arrayToGenerator([...source]))
+        assert.equal(tokens.length, 3)
+    })
+    
+    it("delete one line comment", () => {
+        const lexer = new Lexer()
+        const source = "//adnwjdbakd\na=1"
+        const tokens = lexer.analyse(arrayToGenerator([...source]))
+        assert.equal(tokens.length, 3)
+    })
+
 })
