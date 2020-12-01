@@ -14,6 +14,7 @@ describe("Token",()=>{
         const it1 = new PeekIterator(arrayToGenerator([..."if abc"]))
         const it2 = new PeekIterator(arrayToGenerator([..."true abc"]))
 
+        console.log(Token)
         const token1 = Token.makeVarOrKeyword(it1)
         const token2 = Token.makeVarOrKeyword(it2)
         it1.next()

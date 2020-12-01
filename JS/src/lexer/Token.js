@@ -64,11 +64,12 @@ class Token {
   }
 
 
-  static MakeVarOrKeyword(it) {
+  static makeVarOrKeyword(it) {
     let s = "";
 
     while (it.hasNext()) {
-      const c = it.peek()
+      const c = it.peek();
+
       if (AlphabetHelper.isLiteral(c)) {
         s += c;
       } else {
@@ -76,17 +77,18 @@ class Token {
       }
       // 不变式
       it.next();
-      
     }
+
     if (Keywords.has(s)) {
       return new Token(TokenType.KEYWORD, s);
     }
 
-    if(s == 'true' || s=='false'){
+    if (s == "true" || s == "false") {
       return new Token(TokenType.BOOLEAN, s);
     }
 
     return new Token(TokenType.VARIABLE, s);
-
   }
 }
+
+module.exports = Token
