@@ -15,6 +15,8 @@ public abstract class ASTNode {
     protected ArrayList<ASTNode> children = new ArrayList<>();
     protected ASTNode parent;
 
+    protected ASTNodeTypes type; // 类型
+
 
     /* 关键信息 */
     protected Token lexeme; // 词法单元
@@ -22,6 +24,11 @@ public abstract class ASTNode {
 
 
     public ASTNode() {
+    }
+
+    public ASTNode(ASTNodeTypes _type, String _label) {
+        this.type = _type;
+        this.label = _label;
     }
 
 
@@ -32,6 +39,19 @@ public abstract class ASTNode {
     public void setChildren(ArrayList<ASTNode> children) {
         this.children = children;
     }
+
+    public ASTNode getChild(int index) {
+        if (index >= this.children.size()) {
+            return null;
+        }
+        return this.children.get(index);
+    }
+
+    public void addChild(ASTNode node) {
+        node.parent = this;
+        children.add(node);
+    }
+
 
     public Token getLexeme() {
         return lexeme;
