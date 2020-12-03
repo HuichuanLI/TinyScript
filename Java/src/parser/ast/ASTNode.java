@@ -1,4 +1,5 @@
-package parser;
+package parser.ast;
+import org.apache.commons.lang.StringUtils;
 
 import lexer.Token;
 
@@ -65,7 +66,23 @@ public abstract class ASTNode {
         return label;
     }
 
+    public void setType(ASTNodeTypes type) {
+        this.type = type;
+    }
+
     public void setLabel(String label) {
         this.label = label;
     }
+
+    public void print(int indent) {
+        if(indent == 0) {
+            System.out.println("print:" + this);
+        }
+
+        System.out.println(StringUtils.leftPad(" ", indent *2) + label);
+        for(ASTNode child : children) {
+            child.print(indent + 1);
+        }
+    }
+
 }

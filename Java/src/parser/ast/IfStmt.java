@@ -1,4 +1,4 @@
-package parser;
+package parser.ast;
 
 /**
  * Author : lihuichuan
