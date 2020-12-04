@@ -30,7 +30,7 @@ describe("SimpleParser", () => {
         assert.equal(v4.lexeme.getValue(), "4")
 
 
-        // expr.print()
+        expr.print()
 
 
 

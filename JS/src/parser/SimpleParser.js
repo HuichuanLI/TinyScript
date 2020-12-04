@@ -12,7 +12,7 @@ class SimpleParser {
         if(!it.hasNext()) {
             return scalar
         }
-        console.log(scalar)
+        // console.log(scalar)
 
         expr.addChild(scalar)
         const op = it.nextMatch("+")
