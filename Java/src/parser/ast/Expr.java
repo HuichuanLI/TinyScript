@@ -96,13 +96,13 @@ public class Expr extends ASTNode {
 
 
     private static ASTNode F(PeekTokenIterator it) throws ParseException {
-        Factor factor = Factor.parse(it);
+        ASTNode factor = Factor.parse(it);
         if (factor == null) {
             return null;
         }
-        if (it.hasNext() && it.peek().getValue().equals("(")) {
-            return CallExpr.parse(factor, it);
-        }
+//        if (it.hasNext() && it.peek().getValue().equals("(")) {
+//            return CallExpr.parse(factor, it);
+//        }
         return factor;
     }
 
