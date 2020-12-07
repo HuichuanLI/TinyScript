@@ -6,17 +6,16 @@ import parser.util.PeekTokenIterator;
 
 /**
  * Author : lihuichuan
- * Time   : 2020/12/3
+ * Time   : 2020/12/7
  */
-public class DeclareStmt extends Stmt {
-    public DeclareStmt() {
-        super(ASTNodeTypes.DECLARE_STMT, "declare");
+public class AssignStmt extends Stmt {
+    public AssignStmt() {
+        super(ASTNodeTypes.ASSIGN_STMT, "assign");
     }
 
     public static ASTNode parse(PeekTokenIterator it) throws ParseException {
-        DeclareStmt stmt = new DeclareStmt();
+        AssignStmt stmt = new AssignStmt();
 
-        it.nextMatch("var");
         Token tkn = it.peek();
         ASTNode factor = Factor.parse(it);
         if (factor == null) {
@@ -30,4 +29,5 @@ public class DeclareStmt extends Stmt {
 
         return stmt;
     }
+
 }
