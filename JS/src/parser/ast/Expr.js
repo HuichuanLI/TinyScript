@@ -47,6 +47,8 @@ Expr.E = (it, k) => {
       () => Expr.E_(it, k)
     );
   } else {
+    // 最高优先度
+    // 产生两个式子的竞争
     return Expr.race(
       it,
       () =>
@@ -85,7 +87,7 @@ Expr.E_ = (it, k) => {
   }
   return null;
 };
-
+// 单个
 Expr.U = it => {
   const token = it.peek();
   const value = token.getValue();
