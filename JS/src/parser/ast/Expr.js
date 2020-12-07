@@ -1,6 +1,7 @@
 const ASTNode = require("./ASTNode");
 const ASTNodeTypes = require("./ASTNodeTypes");
 const table = require("../util/PriorityTable");
+const Factor = require("../ast/Factor")
 
 class Expr extends ASTNode {
   constructor() {
