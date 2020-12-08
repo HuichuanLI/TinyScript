@@ -31,6 +31,7 @@ Stmt.parse = (it) => {
         return AssignStmt.parse(it);
     } else if(token.getValue() === "var") {
         return DeclareStmt.parse(it);
+    }
     // } else if(token.getValue() === "func") {
     //     return FunctionDeclareStmt.parse(it)
     // } else if(token.getValue() === "return") {

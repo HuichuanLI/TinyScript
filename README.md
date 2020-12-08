@@ -4,6 +4,9 @@
 
 ## 分为三个部分：Lexer，Parser,translator
 
+![number](./photo/综合架构.png)
+
+
 ### Lexer中的状态转换图
 
 数字类型的
