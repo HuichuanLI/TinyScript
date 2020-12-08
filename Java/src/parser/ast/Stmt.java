@@ -24,20 +24,17 @@ public abstract class Stmt extends ASTNode {
             return AssignStmt.parse(it);
         } else if (token.getValue().equals("var")) {
             return DeclareStmt.parse(it);
+
+        } else if (token.getValue().equals("func")) {
+            return FunctionDeclareStmt.parse(it);
+        } else if (token.getValue().equals("return")) {
+            return ReturnStmt.parse(it);
+        } else if (token.getValue().equals("if")) {
+            return IfStmt.parse(it);
+        } else if (token.getValue().equals("{")) {
+            return Block.parse(it);
+        } else {
+            return Expr.parse(it);
         }
-//        } else if (token.getValue().equals("func")) {
-//            return FunctionDeclareStmt.parse(it);
-//        } else if (token.getValue().equals("return")) {
-//            return ReturnStmt.parse(it);
-//        } else if (token.getValue().equals("if")) {
-//            return IfStmt.parse(it);
-//        } else if (token.getValue().equals("{")) {
-//            return Block.parse(it);
-//        } else {
-//            return Expr.parse(it);
-//        }
-
-        return null;
-
     }
 }

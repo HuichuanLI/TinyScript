@@ -7,7 +7,10 @@ import parser.util.ParseException;
 import parser.util.ParserUtils;
 import parser.util.PeekTokenIterator;
 
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.function.IntFunction;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class StmtTest {
     private PeekTokenIterator createTokenIt(String src) throws LexicalException, ParseException {
         Lexer lexer = new Lexer();
-        ArrayList tokens = lexer.analyse(src.chars().mapToObj(x -> (char) x));
+        ArrayList tokens = lexer.analyse(src.chars().mapToObj((IntFunction<?>) x -> (char) x));
         PeekTokenIterator tokenIt = new PeekTokenIterator(tokens.stream());
         return tokenIt;
     }
@@ -78,5 +81,37 @@ class StmtTest {
         assertEquals("=", assignStmt2.getLexeme().getValue());
         assertEquals(2, elseBlock.getChildren().size());
     }
+
+    @Test
+    public void function() throws FileNotFoundException, UnsupportedEncodingException, LexicalException, ParseException {
+        ArrayList tokens = Lexer.fromFile("./example/function.ts");
+        FunctionDeclareStmt functionStmt = (FunctionDeclareStmt) Stmt.parseStmt(new PeekTokenIterator(tokens.stream()));
+        functionStmt.print(0);
+        ASTNode args = functionStmt.getArgs();
+        assertEquals("a", args.getChild(0).getLexeme().getValue());
+        assertEquals("b", args.getChild(1).getLexeme().getValue());
+//
+        String type = functionStmt.getFuncType();
+        assertEquals("int", type);
+//
+        ASTNode functionVariable = functionStmt.getFunctionVariable();
+        assertEquals("add", functionVariable.getLexeme().getValue());
+
+        ASTNode block = functionStmt.getBlock();
+        assertEquals(true, block.getChild(0) instanceof ReturnStmt);
+
+    }
+
+    @Test
+    public void function1() throws FileNotFoundException, UnsupportedEncodingException, LexicalException, ParseException {
+        ArrayList tokens = Lexer.fromFile("./example/recursion.ts");
+        FunctionDeclareStmt functionStmt = (FunctionDeclareStmt) Stmt.parseStmt(new PeekTokenIterator(tokens.stream()));
+        functionStmt.print(0);
+//        assertEquals("func fact args block", ParserUtils.toBFSString(functionStmt, 4));
+//        assertEquals("args n", ParserUtils.toBFSString(functionStmt.getArgs(), 2));
+//        assertEquals("block if return", ParserUtils.toBFSString(functionStmt.getBlock(), 3));
+
+    }
+
 
 }

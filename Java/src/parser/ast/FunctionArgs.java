@@ -19,6 +19,7 @@ public class FunctionArgs extends ASTNode {
         while (it.peek().isType()) {
             Token type = it.next();
             Variable variable = (Variable) Factor.parse(it);
+            // 类型
             variable.setTypeLexeme(type);
             args.addChild(variable);
 

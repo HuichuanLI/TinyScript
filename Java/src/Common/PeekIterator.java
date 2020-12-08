@@ -23,6 +23,10 @@ public class PeekIterator<T> implements Iterator<T> {
         it = stream.iterator();
     }
 
+    public PeekIterator(Iterator<T> _it, T endToke) {
+        this.it = _it;
+        this._endToken = endToke;
+    }
 
     public PeekIterator(Stream<T> stream, T endToken) {
         it = stream.iterator();
