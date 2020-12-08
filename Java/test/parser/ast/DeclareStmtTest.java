@@ -107,9 +107,9 @@ class StmtTest {
         ArrayList tokens = Lexer.fromFile("./example/recursion.ts");
         FunctionDeclareStmt functionStmt = (FunctionDeclareStmt) Stmt.parseStmt(new PeekTokenIterator(tokens.stream()));
         functionStmt.print(0);
-//        assertEquals("func fact args block", ParserUtils.toBFSString(functionStmt, 4));
-//        assertEquals("args n", ParserUtils.toBFSString(functionStmt.getArgs(), 2));
-//        assertEquals("block if return", ParserUtils.toBFSString(functionStmt.getBlock(), 3));
+        assertEquals("func fact args block", ParserUtils.toBFSString(functionStmt, 4));
+        assertEquals("args n", ParserUtils.toBFSString(functionStmt.getArgs(), 2));
+        assertEquals("block if return", ParserUtils.toBFSString(functionStmt.getBlock(), 3));
 
     }
 
