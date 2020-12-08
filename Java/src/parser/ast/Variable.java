@@ -6,11 +6,21 @@ import lexer.Token;
  * Author : lihuichuan
  * Time   : 2020/12/3
  */
-public class Variable extends Factor{
+public class Variable extends Factor {
+
+    private Token typeLexeme = null;
+
     public Variable(Token token) {
         super(token);
         this.type = ASTNodeTypes.VARIABLE;
     }
 
+    public void setTypeLexeme(Token token) {
+        this.typeLexeme = token;
+    }
+
+    public Token getTypeLexeme() {
+        return this.typeLexeme;
+    }
 
 }

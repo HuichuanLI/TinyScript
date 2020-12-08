@@ -66,6 +66,7 @@ class StmtTest {
                 "}"
         );
         IfStmt stmt = (IfStmt) IfStmt.parse(it);
+        stmt.print(0);
         Variable expr = (Variable) stmt.getChild(0);
         Block block = (Block) stmt.getChild(1);
         AssignStmt assignStmt = (AssignStmt) block.getChild(0);

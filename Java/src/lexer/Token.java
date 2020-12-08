@@ -347,5 +347,14 @@ public class Token {
         return String.format("type %s, value %s", type, value);
     }
 
+    public boolean isType() {
+        return this.value.equals("bool")
+                || this.value.equals("int")
+                || this.value.equals("float")
+                || this.value.equals("void")
+                || this.value.equals("string");
+
+    }
+
 
 }

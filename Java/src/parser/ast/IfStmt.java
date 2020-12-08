@@ -55,4 +55,31 @@ public class IfStmt extends Stmt {
 
     }
 
+
+    public ASTNode getExpr() {
+        return this.getChild(0);
+    }
+
+    public ASTNode getBlock() {
+        return this.getChild(1);
+    }
+
+    public ASTNode getElseBlock() {
+
+        ASTNode block = this.getChild(2);
+        if (block instanceof Block) {
+            return block;
+        }
+        return null;
+    }
+
+    public ASTNode getElseIfStmt() {
+        ASTNode ifStmt = this.getChild(2);
+        if (ifStmt instanceof IfStmt) {
+            return ifStmt;
+        }
+        return null;
+    }
+
+
 }
