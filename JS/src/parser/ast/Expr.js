@@ -18,6 +18,8 @@ class Expr extends ASTNode {
 }
 
 module.exports = Expr;
+const {CallExpr} = require("./index")
+
 /**
  * left: E(k) -> E(k) op(k) E(k+1) | E(k+1)
  * right:

@@ -2,6 +2,10 @@ const PeekIterator = require('../common/PeekIterator');
 const AlphabetHelper = require('./AlphabetHelper');
 const Token = require('../lexer/Token')
 const TokenType = require('../lexer/TokenType')
+const fs = require("fs");
+const arrayToGenerator = require("../common/arrayToGenerator");
+
+
 
 class Lexer {
     analyse(source) {
@@ -83,6 +87,13 @@ class Lexer {
         }
         return tokens;
     }
+
+    static fromFile(src) {
+        const content = fs.readFileSync(src, "utf-8")
+        const lexer = new Lexer()
+       
+        return arrayToGenerator(lexer.analyse(arrayToGenerator(content)))
+      }
 }
 
 module.exports = Lexer;

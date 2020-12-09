@@ -19,5 +19,21 @@ class ParserUtils {
             return prts.join(" ")
         }
     }
+
+    static toBFSString(root,max){
+        const queue = new LinkedList()
+        const list = []
+        queue.push(root)
+
+        let c = 0
+        while(queue.length > 0 && c++ < max) {
+            const node = queue.shift()
+            list.push(node.getLabel())
+            for(const child of node.getChildren()) {
+                queue.push(child);
+            }
+        }
+        return list.join(" ")
+    }
 }
 module.exports = ParserUtils
