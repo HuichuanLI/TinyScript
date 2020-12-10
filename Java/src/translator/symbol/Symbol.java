@@ -53,7 +53,7 @@ public class Symbol {
         symbol.type = this.type;
         return symbol;
     }
-    
+
     public void setParent(SymbolTable parent) {
         this.parent = parent;
     }
