@@ -26,3 +26,9 @@ string类型的
 combine总
 
 ![string](./photo/combine.png)
+
+
+
+### Translator 
+
+![](./photo/内存分布.png)
