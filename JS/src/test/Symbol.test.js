@@ -12,8 +12,8 @@ describe("SymbolTable", () => {
         const symbolTable = new SymbolTable()
         symbolTable.createLabel("L0", new Token(TokenType.VARIABLE, "foo"))
         symbolTable.createVariable()
-        symbolTable.createSymbolByLexeme(new Token(TokenType.VARIABLE, "foo"))
-        assert.equal(symbolTable.localSize(), 1)
+        symbolTable.createSymbolByLexeme(new Token(TokenType.VARIABLE, "foao"))
+        assert.equal(symbolTable.localSize(), 2)
     })
 
     it("chain", () => {
