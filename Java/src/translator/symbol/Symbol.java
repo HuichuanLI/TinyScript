@@ -10,7 +10,9 @@ public class Symbol {
 
     // union
     SymbolTable parent;
+    // Token 就是对应词法分析的Token
     Token lexeme;
+    // label 是只用label会使用
     String label;
     // 为了储存offset 位置
     int offset;

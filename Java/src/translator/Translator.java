@@ -3,10 +3,7 @@ package translator;
 import com.sun.corba.se.impl.oa.toa.TOA;
 import lexer.Token;
 import org.apache.commons.lang.NotImplementedException;
-import parser.ast.ASTNode;
-import parser.ast.ASTNodeTypes;
-import parser.ast.Expr;
-import parser.ast.Program;
+import parser.ast.*;
 import parser.util.ParseException;
 import translator.symbol.Symbol;
 import translator.symbol.SymbolTable;
@@ -31,27 +28,27 @@ public class Translator {
 
     public void translateStmt(TAProgram program, ASTNode node, SymbolTable symbolTable) throws ParseException {
         switch (node.getType()) {
-            case BLOCK:
-                translateBlock(program, (Block) node, symbolTable);
-                return;
-            case IF_STMT:
-                translateIfStmt(program, (IfStmt) node, symbolTable);
-                return;
+//            case BLOCK:
+//                translateBlock(program, (Block) node, symbolTable);
+//                return;
+//            case IF_STMT:
+//                translateIfStmt(program, (IfStmt) node, symbolTable);
+//                return;
             case ASSIGN_STMT:
                 translateAssignStmt(program, node, symbolTable);
                 return;
             case DECLARE_STMT:
                 translateDeclareStmt(program, node, symbolTable);
                 return;
-            case FUNCTION_DECLARE_STMT:
-                translateFunctionDeclareStmt(program, node, symbolTable);
-                return;
-            case RETURN_STMT:
-                translateReturnStmt(program, node, symbolTable);
-                return;
-            case CALL_EXPR:
-                translateCallExpr(program, node, symbolTable);
-                return;
+//            case FUNCTION_DECLARE_STMT:
+//                translateFunctionDeclareStmt(program, node, symbolTable);
+//                return;
+//            case RETURN_STMT:
+//                translateReturnStmt(program, node, symbolTable);
+//                return;
+//            case CALL_EXPR:
+//                translateCallExpr(program, node, symbolTable);
+//                return;
         }
         throw new NotImplementedException("Translator not impl. for " + node.getType());
     }

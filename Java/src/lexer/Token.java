@@ -252,7 +252,7 @@ public class Token {
         throw new LexicalException("Unexpected error");
 
     }
-
+    // 使用状态判获取数字
     public static Token makeNumber(PeekIterator<Character> it) throws LexicalException {
 
         String s = "";
