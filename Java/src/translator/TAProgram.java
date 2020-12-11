@@ -50,5 +50,12 @@ public class TAProgram {
         return this.staticSymbolTable;
     }
 
+    public TAInstruction addLabel() {
+        String label = "L" + labelCounter++;
+        TAInstruction taCode = new TAInstruction(TAInstructionType.LABEL, null, null, null, null);
+        taCode.setArg1(label);
+        instructions.add(taCode);
+        return taCode;
+    }
 
 }
