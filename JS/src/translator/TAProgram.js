@@ -43,5 +43,13 @@ class TAProgram {
             this.setStaticSymbols(child)
         }
     }
+
+    toString() {
+        const lines = []
+        for (let opcode of this.instructions) {
+          lines.push(opcode.toString())
+        }
+        return lines.join("\n")
+      }
 }
 module.exports = TAProgram

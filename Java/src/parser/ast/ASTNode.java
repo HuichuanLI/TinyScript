@@ -1,9 +1,12 @@
 package parser.ast;
+
 import org.apache.commons.lang.StringUtils;
 
 import lexer.Token;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * Author : lihuichuan
@@ -22,6 +25,8 @@ public abstract class ASTNode {
     /* 关键信息 */
     protected Token lexeme; // 词法单元
     protected String label; // 备注(标签)
+
+    private HashMap<String, Object> _props = new HashMap<>();
 
 
     public ASTNode() {
@@ -66,8 +71,13 @@ public abstract class ASTNode {
         return label;
     }
 
+
     public void setType(ASTNodeTypes type) {
         this.type = type;
+    }
+
+    public ASTNodeTypes getType() {
+        return type;
     }
 
     public void setLabel(String label) {
@@ -75,14 +85,29 @@ public abstract class ASTNode {
     }
 
     public void print(int indent) {
-        if(indent == 0) {
+        if (indent == 0) {
             System.out.println("print:" + this);
         }
 
-        System.out.println(StringUtils.leftPad(" ", indent *2) + label);
-        for(ASTNode child : children) {
+        System.out.println(StringUtils.leftPad(" ", indent * 2) + label);
+        for (ASTNode child : children) {
             child.print(indent + 1);
         }
     }
 
+
+    public boolean isValueType() {
+        return this.type == ASTNodeTypes.VARIABLE || this.type == ASTNodeTypes.SCALAR;
+    }
+
+    public Object getProp(String key) {
+        if (!this._props.containsKey(key)) {
+            return null;
+        }
+        return this._props.get(key);
+    }
+
+    public void setProp(String key, Object value) {
+        this._props.put(key, value);
+    }
 }
