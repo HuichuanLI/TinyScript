@@ -4,6 +4,7 @@ import org.apache.commons.lang.NotImplementedException;
 import translator.symbol.Symbol;
 
 /**
+ * 三地址法
  * Author : lihuichuan
  * Time   : 2020/12/11
  */
@@ -93,3 +94,4 @@ public class TAInstruction {
         throw new NotImplementedException("Unkonw opcode type:" + this.type);
 
     }
+}
