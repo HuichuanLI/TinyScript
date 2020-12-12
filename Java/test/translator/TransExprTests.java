@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class TransExprTests {
     void assertOpcodes(String[] lines, ArrayList<TAInstruction> opcodes) {
-        for (int i = 0; i < opcodes.size(); i++) {
+        for (int i = 0; i < opcodes.size(); i++ ) {
             TAInstruction opcode = opcodes.get(i);
             String strVal = opcode.toString();
             assertEquals(lines[i], strVal);

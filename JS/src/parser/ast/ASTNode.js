@@ -1,17 +1,23 @@
+const ASTNodeTypes = require('./ASTNodeTypes')
+
 class ASTNode {
-    constructor(_type = null, _label = null){
+    constructor(_type = null, _label = null) {
         /* 树结构 */
         this.children = []
-        this.parent = null 
+        this.parent = null
 
         /* 关键信息 */
         this.lexeme = null
-        this.type = _type 
+        this.type = _type
         this.label = _label
+        /* 属性 */
+        this._props = {}
     }
 
     getChild(index) {
-        if(!this.children[index]) {return null}
+        if (!this.children[index]) {
+            return null
+        }
         return this.children[index]
     }
 
@@ -20,15 +26,15 @@ class ASTNode {
         this.children.push(node)
     }
 
-    getLabel(){
+    getLabel() {
         return this.label
     }
 
-    getLexeme(){
+    getLexeme() {
         return this.lexeme
     }
 
-    getType(){
+    getType() {
         return this.type
     }
 
@@ -37,13 +43,28 @@ class ASTNode {
         this.lexeme = lexeme
     }
 
-    getChildren(){
+    getChildren() {
         return this.children
     }
 
     print(indent = 0) {
         console.log(`${"".padStart(indent * 2, " ")}${this.label}`)
         this.children.forEach(x => x.print(indent + 1))
+    }
+
+    setProp(key, value) {
+        this._props[key] = value
+    }
+
+    getProp(key) {
+        if (this._props[key] === undefined) {
+            return null
+        }
+        return this._props[key]
+    }
+
+    isValueType() {
+        return this.type == ASTNodeTypes.VARIABLE || this.type == ASTNodeTypes.SCALAR
     }
 
 
